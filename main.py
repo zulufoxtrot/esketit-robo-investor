@@ -29,3 +29,4 @@ if __name__ == "__main__":
             browser.buy_loan(loan)
         except NotEnoughCashException:
             logging.info("No more cash left. Stopping loans purchase.")
+            break
