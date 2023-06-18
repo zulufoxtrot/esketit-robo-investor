@@ -8,6 +8,10 @@ from Loan import Loan
 API_URL = "https://esketit.com/api"
 
 
+class NotEnoughCashException(Exception):
+    pass
+
+
 class MarketType(Enum):
     PRIMARY = "primary"
     SECONDARY = "secondary"
@@ -80,5 +84,7 @@ class EsketitBrowser:
             "investmentId": loan.investment_id
         }
         self.session.headers["X-Xsrf-Token"] = self.session.cookies.get_dict()["XSRF-TOKEN"]
-        self.session.post(API_URL + "/investor/buy-investment", json=data)
+        req = self.session.post(API_URL + "/investor/buy-investment", json=data)
+        if req.status_code == 400 and "NOT_ENOUGH_CASH" in req.text:
+            raise NotEnoughCashException
         logging.info(f"Bought loan {loan.investment_id}")

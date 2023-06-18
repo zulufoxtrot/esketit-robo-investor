@@ -1,7 +1,7 @@
 import logging
 import os
 
-from EsketitBrowser import EsketitBrowser, MarketType
+from EsketitBrowser import EsketitBrowser, MarketType, NotEnoughCashException
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
@@ -25,4 +25,7 @@ if __name__ == "__main__":
             secondary_loans_without_discount + secondary_loans_with_premium
 
     for loan in loans:
-        browser.buy_loan(loan)
+        try:
+            browser.buy_loan(loan)
+        except NotEnoughCashException:
+            logging.info("No more cash left. Stopping loans purchase.")
