@@ -80,7 +80,7 @@ class EsketitBrowser:
     def buy_loan(self, loan: Loan):
         logging.info(f"Buying loan {loan.investment_id}...")
         data = {
-            "amount": "1",
+            "amount": "10",
             "investmentId": loan.investment_id
         }
         self.session.headers["X-Xsrf-Token"] = self.session.cookies.get_dict()["XSRF-TOKEN"]
