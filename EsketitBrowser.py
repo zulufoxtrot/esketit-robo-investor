@@ -53,11 +53,11 @@ class EsketitBrowser:
 
         if market_type == MarketType.PRIMARY:
             url = "/investor/public/query-primary-market"
-            data["filter"]["principalOfferFrom"] = "1"
+            data["filter"]["principalOfferFrom"] = "10"
 
         elif market_type == MarketType.SECONDARY:
             url = "/investor/public/query-secondary-market"
-            data["filter"]["smOfferPrincipalAvailableFrom"] = "1"
+            data["filter"]["smOfferPrincipalAvailableFrom"] = "10"
             data["filter"]["smDiscountOrPremiumPercentTo"] = str(maximum_premium)
             data["sortBy"] = "smDiscountOrPremiumPercent"
 
