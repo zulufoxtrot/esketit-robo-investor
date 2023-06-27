@@ -19,7 +19,8 @@ if __name__ == "__main__":
     primary_loans = browser.get_available_loans(MarketType.PRIMARY)
 
     # then look for secondary loans with a premimu < 0.5%
-    secondary_loans_with_premium = browser.get_available_loans(MarketType.SECONDARY, maximum_premium=0.5)
+    # secondary_loans_with_premium = browser.get_available_loans(MarketType.SECONDARY, maximum_premium=0.5)
+    secondary_loans_with_premium = []
 
     loans = secondary_loans_with_discount + primary_loans + \
             secondary_loans_without_discount + secondary_loans_with_premium
