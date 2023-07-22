@@ -8,6 +8,9 @@ if __name__ == "__main__":
 
     browser = EsketitBrowser(os.environ["ESKETIT_EMAIL"], os.environ["ESKETIT_PASSWORD"])
 
+    # amount (in EUR) for each purchase
+    AMOUNT_TO_BUY = 10
+
     browser.login()
 
     # first look for secondary loans with a discount
@@ -18,16 +21,11 @@ if __name__ == "__main__":
     # then look for primary loans
     primary_loans = browser.get_available_loans(MarketType.PRIMARY)
 
-    # then look for secondary loans with a premimu < 0.5%
-    # secondary_loans_with_premium = browser.get_available_loans(MarketType.SECONDARY, maximum_premium=0.5)
-    secondary_loans_with_premium = []
-
-    loans = secondary_loans_with_discount + primary_loans + \
-            secondary_loans_without_discount + secondary_loans_with_premium
+    loans = secondary_loans_with_discount + primary_loans + secondary_loans_without_discount
 
     for loan in loans:
         try:
-            browser.buy_loan(loan)
+            browser.buy_loan(loan, AMOUNT_TO_BUY)
         except NotEnoughCashException:
             logging.info("No more cash left. Stopping loans purchase.")
             break
