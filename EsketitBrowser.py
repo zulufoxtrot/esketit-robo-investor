@@ -90,6 +90,7 @@ class EsketitBrowser:
                 "collectionStatuses": ["Current"],
                 "interestRatePercentFrom": "9",
                 "remainingTermInDaysTo": "90",
+                "currencyCode": "EUR",
                 "excludeAlreadyInvested": True,
                 "buybackOnly": True,
             },
