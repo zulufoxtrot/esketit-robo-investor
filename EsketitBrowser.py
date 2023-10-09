@@ -85,7 +85,7 @@ class EsketitBrowser:
             "pageSize": 300,
             "filter": {
                 "products": [],
-                "countries": [],
+                "countries": ["CZ", "LV", "ES", "MX", "PL"],  # temporarily exclude Jordan
                 "originators": [],
                 "collectionStatuses": ["Current"],
                 "interestRatePercentFrom": "9",
