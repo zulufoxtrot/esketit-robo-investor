@@ -4,6 +4,7 @@ import datetime
 class Loan:
     investment_id: int
     loan_id: int
+    principal_available: float
     interest_rate: float
     investment_date: datetime.date
     issue_date: datetime.date

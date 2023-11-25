@@ -9,7 +9,7 @@ if __name__ == "__main__":
     browser = EsketitBrowser(os.environ["ESKETIT_EMAIL"], os.environ["ESKETIT_PASSWORD"])
 
     # amount (in EUR) for each purchase
-    AMOUNT_TO_BUY = 10
+    AMOUNT_TO_BUY = 50
 
     browser.login()
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     for loan in loans:
         try:
-            browser.buy_loan(loan, AMOUNT_TO_BUY)
+            browser.buy_loan(loan, min(loan.principal_available, AMOUNT_TO_BUY))
         except NotEnoughCashException:
             logging.info("No more cash left. Stopping loans purchase.")
             break

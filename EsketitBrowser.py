@@ -117,6 +117,10 @@ class EsketitBrowser:
             loan = Loan()
             loan.investment_id = loan_item["investmentId"]
             loan.loan_id = loan_item["loanId"]
+            if market_type == MarketType.PRIMARY:
+                loan.principal_available = loan_item["principalOffer"]
+            else:
+                loan.principal_available = loan_item["smOfferPrincipalAvailable"]
             loans.append(loan)
 
         logging.info(f"Found {len(loans)}.")
